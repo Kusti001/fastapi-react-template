@@ -1,0 +1,7 @@
+fastapi-users[sqlalchemy,oauth]
+fastapi
+pydantic-settings
+asyncpg
+
+aiosqlite
+uvicorn[standard]
