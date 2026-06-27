@@ -2,26 +2,28 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { MainPage } from "./pages/MainPage"
 import { LoginPage } from "./pages/LoginPage"
 import { AuthCallbackPage } from "./pages/AuthCallbackPage"
-import { AuthTest } from "./pages/AuthTest"
+import { MePage } from "@/pages/MePage"
+import { Navbar } from "./components/Navbar"
+import { Outlet } from "react-router-dom"
+
+function Layout() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  )
+}
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <MainPage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    // Сюда бэкенд будет присылать пользователя в самом конце
-    path: "/auth/google/callback",
-    element: <AuthCallbackPage />,
-  },
-  {
-    // Сюда бэкенд будет присылать пользователя в самом конце
-    path: "/me",
-    element: <AuthTest />,
+    element: <Layout />,
+    children: [
+      { path: "/", element: <MainPage /> },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/me", element: <MePage /> },
+      { path: "/auth/:provider/callback", element: <AuthCallbackPage /> }
+    ],
   },
 ])
 

@@ -7,7 +7,7 @@ interface UserData {
   is_active: boolean;
 }
 
-export function AuthTest() {
+export function MePage() {
   const [data, setData] = useState<UserData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
