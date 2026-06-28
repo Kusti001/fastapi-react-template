@@ -2,6 +2,8 @@
 
 Lightweight fullstack template for starting a web project. Includes **only OAuth2 authentication** — no extra complexity, no bloat. Take it and build on top.
 
+> **Planned:** Nginx reverse proxy configuration for production Docker Compose.
+
 **Stack:** FastAPI · PostgreSQL · React + Vite + TypeScript · shadcn/ui · Docker
 
 ## Getting Started
@@ -35,6 +37,7 @@ GOOGLE_CLIENT_SECRET=your_client_secret
 GOOGLE_REDIRECT_URI=http://localhost:5173/auth/google/callback
 DATABASE_URL=postgresql+asyncpg://postgres_user:postgres_password@localhost:5432/app_db
 ```
+    while backend in container, use docker networking in DATABASE_URL
 
 **`db/.env`:**
 ```env
@@ -47,6 +50,7 @@ POSTGRES_DB=app_db
 ```env
 VITE_API_URL=http://localhost:8000
 ```
+   while frontend & backend in containers, use docker networking
 
 ### 3. Run
 
@@ -120,12 +124,3 @@ Short version: add credentials to `.env`, create a client in `core/oauth2.py`, r
 ├── db/.env
 └── docker-compose.*.yml
 ```
-
-## API
-
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/api/v1/auth/google/authorize` | Get OAuth redirect URL |
-| `GET` | `/api/v1/auth/google/callback` | Exchange code for JWT |
-| `GET` | `/api/v1/auth/me` | Get current user |
-| `GET` | `/docs` | Swagger UI |
