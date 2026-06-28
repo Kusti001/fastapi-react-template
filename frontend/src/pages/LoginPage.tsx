@@ -17,7 +17,7 @@ export function LoginPage() {
       window.location.href = url
     } catch (error) {
       console.error(error)
-      alert("Ошибка при подключении к серверу")
+      alert("Failed to connect to the server")
       setLoading(null)
     }
   }
@@ -26,11 +26,11 @@ export function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
       <div className="w-full max-w-sm rounded-xl border bg-background p-6 shadow-sm">
         <h2 className="mb-2 text-center text-2xl font-semibold">
-          Вход в систему
+          Sign in
         </h2>
 
         <p className="mb-6 text-center text-sm text-muted-foreground">
-          Выберите способ входа
+          Choose a sign-in method
         </p>
 
         <div className="space-y-3">
@@ -43,8 +43,8 @@ export function LoginPage() {
               className="w-full py-5 font-medium"
             >
               {loading === provider.id
-                ? "Загрузка..."
-                : `Войти через ${provider.label}`}
+                ? "Loading..."
+                : `Sign in with ${provider.label}`}
             </Button>
           ))}
         </div>
