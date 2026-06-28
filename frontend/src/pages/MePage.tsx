@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiClient } from "@/shared/api/client"; // Скорректируй путь к твоему apiClient
+import { apiClient } from "@/shared/api/client";
 
 interface UserData {
   id: string;
@@ -17,7 +17,7 @@ export function MePage() {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        setError("Ошибка: Токен отсутствует в localStorage. Сначала нужно залогиниться!");
+        setError("Error: No token in localStorage.");
         setLoading(false);
         return;
       }
@@ -32,9 +32,9 @@ export function MePage() {
       } catch (err: any) {
         if (err.response) {
           const detail = err.response.data?.detail || err.response.statusText;
-          setError(`Ошибка бэкенда: ${err.response.status} — ${detail}`);
+          setError(`Backend error: ${err.response.status} — ${detail}`);
         } else {
-          setError("Не удалось связаться с бэкендом (Сеть/CORS)");
+          setError("Network error (CORS or connection issue)");
         }
         setData(null);
       } finally {
@@ -48,14 +48,14 @@ export function MePage() {
   if (loading) {
     return (
       <div className="animate-pulse rounded-lg border bg-background p-4 text-sm">
-        ⏳ Проверяем JWT-токен на бэкенде...
+        ⏳ Checking JWT-token...
       </div>
     );
   }
 
   return (
     <div className="rounded-lg border bg-background p-6 shadow-sm max-w-md mx-auto my-4">
-      <h3 className="text-lg font-semibold mb-4">Статус авторизации</h3>
+      <h3 className="text-lg font-semibold mb-4">Auth Status</h3>
       
       {error && (
         <div className="p-3 text-sm text-destructive bg-destructive/10 rounded border border-destructive/20">
@@ -74,9 +74,9 @@ export function MePage() {
             <span className="font-medium">{data.email}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-muted-foreground">Статус:</span>
+            <span className="text-muted-foreground">Status:</span>
             <span className={data.is_active ? "text-emerald-500 font-medium" : "text-amber-500"}>
-              {data.is_active ? "Активен" : "Неактивен"}
+              {data.is_active ? "active" : "no active"}
             </span>
           </div>
         </div>
