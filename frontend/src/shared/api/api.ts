@@ -34,7 +34,7 @@ export async function exchangeOAuthCode(
   }>(`/api/v1/auth/${provider}/callback`, { params: { code, state } })
 
   const token = response.data.token ?? response.data.access_token
-  if (!token) throw new Error("Токен не пришёл в ответе бэкенда")
+  if (!token) throw new Error("No token in response")
 
   return token
 }
@@ -45,7 +45,7 @@ export function logout() {
 
 export async function getCurrentUser(): Promise<User> {
   const token = localStorage.getItem("token")
-  if (!token) throw new Error("Токен отсутствует — нужно залогиниться")
+  if (!token) throw new Error("Unauthorized — please sign in")
 
   const response = await apiClient.get<User>("/api/v1/auth/me", {
     headers: { Authorization: `Bearer ${token}` },
