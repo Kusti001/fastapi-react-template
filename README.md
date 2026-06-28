@@ -11,13 +11,15 @@ Lightweight fullstack template for starting a web project. Includes **only OAuth
 ### 1. Clone and install dependencies
 
 ```bash
-git clone https://github.com/kusti001/fastapi-fullstack-template.git
-cd fastapi-fullstack-template
+git clone https://github.com/kusti001/fastapi-react-template.git
+cd fastapi-react-template
 ```
 
 ```bash
 # Python dependencies
 cd backend
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
