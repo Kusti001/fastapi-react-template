@@ -8,13 +8,15 @@ Lightweight fullstack template for starting a web project. Includes **only OAuth
 
 ## Getting Started
 
-### 1. Clone and install dependencies
+### 1. Use this template
+Click "Use this template" on GitHub to create a new repository with these files and no commit history.
 
+Then clone your new repo:
 ```bash
-git clone https://github.com/kusti001/fastapi-react-template.git
-cd fastapi-react-template
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
 ```
-
+### 2. Install dependencies
 ```bash
 # Python dependencies
 cd backend
@@ -29,7 +31,7 @@ cd frontend
 npm install
 ```
 
-### 2. Configure environment variables
+### 3. Configure environment variables
 
 **`backend/.env`:**
 ```env
@@ -39,7 +41,7 @@ GOOGLE_CLIENT_SECRET=your_client_secret
 GOOGLE_REDIRECT_URI=http://localhost:5173/auth/google/callback
 DATABASE_URL=postgresql+asyncpg://postgres_user:postgres_password@localhost:5432/app_db
 ```
-    while backend in container, use docker networking in DATABASE_URL
+    If the backend runs inside Docker, use @db:5432 instead of @localhost:5432.
 
 **`db/.env`:**
 ```env
@@ -52,9 +54,7 @@ POSTGRES_DB=app_db
 ```env
 VITE_API_URL=http://localhost:8000
 ```
-   while frontend & backend in containers, use docker networking
-
-### 3. Run
+### 4. Run
 
 By default the project is configured for **development mode** — database in Docker, backend and frontend locally.
 
